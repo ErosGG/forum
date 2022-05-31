@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Fòrum</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+        }
+       table {
+           border-collapse: collapse;
+           border: white solid 1px;
+       }
+       th, td {
+           border: white solid 1px;
+           padding: 10px;
+       }
+    </style>
+</head>
+<body>
+    <h1>Fòrum</h1>
+    <table>
+        <tr>
+            <th>Títol</th>
+            <th>Autor</th>
+            <th>Número de respostes</th>
+            <th>Data de publicació</th>
+        </tr>
+        {% for message in messages %}
+            <tr>
+                <td>message.title</td>
+                <td>message.user</td>
+                <td>message.num_replies</td>
+                <td>message.publication_date</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
