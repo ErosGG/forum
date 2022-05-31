@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from forum_messages.views import MessageView, ReplyView
 
-from forum_messages.views import MessageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('welcome/', MessageView.as_view())
+    path('', MessageView.as_view()),
+    path('messages/', MessageView.as_view()),
+    path('messages/<int:message_id>/', ReplyView.as_view(), name='replies')
 ]

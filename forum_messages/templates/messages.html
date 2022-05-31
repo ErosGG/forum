@@ -23,6 +23,7 @@
     <h1>Fòrum</h1>
     <table>
         <tr>
+            <th>ID</th>
             <th>Títol</th>
             <th>Autor</th>
             <th>Número de respostes</th>
@@ -30,10 +31,12 @@
         </tr>
         {% for message in messages %}
             <tr>
-                <td>message.title</td>
-                <td>message.user</td>
-                <td>message.num_replies</td>
-                <td>message.publication_date</td>
+                <td>{{ message.id }}</td>
+<!--                <td><a href="http://localhost:8000/messages/{{ message.id }}/">{{ message.title }}</a></td>-->
+                <td><a href="{% url 'replies' message_id=message.id %}">{{ message.title }}</a></td>
+                <td>{{ message.user }}</td>
+                <td>{{ message.replies_count }}</td>
+                <td>{{ message.published_at }}</td>
             </tr>
         {% endfor %}
     </table>

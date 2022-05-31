@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Fòrum</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+        }
+       div {
+           border: white solid 1px;
+       }
+    </style>
+</head>
+<body>
+    <h1>Fòrum</h1>
+    <div>
+        {% for reply in replies %}
+            <div>
+                <div>
+                    <p>{% firstof reply.user 'Anonymous' %}</p>
+                    <p>{{ reply.published_at }}</p>
+                </div>
+                <div>
+                    <p>{{ reply.content }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

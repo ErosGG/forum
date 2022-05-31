@@ -5,13 +5,13 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
-    id_admin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
 
 
 class Publication(models.Model):
     content = models.CharField(max_length=255)
-    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    publicated_at = models.DateTimeField()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    published_at = models.DateTimeField()
 
     class Meta:
         abstract = True
@@ -23,5 +23,5 @@ class Message(Publication):
 
 
 class Reply(Publication):
-    message_id = models.ForeignKey(Message, on_delete=models.CASCADE)
+    message = models.ForeignKey(Message, on_delete=models.CASCADE)
     pass
