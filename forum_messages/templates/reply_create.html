@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Fòrum</title>
+    <style>
+        form {
+            display: inline-flex;
+            flex-direction: column;
+        }
+        textarea {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'reply.store' message_id=message.id %}" method="post">
+        {% csrf_token %}
+        <label for="content">Contingut</label>
+        <textarea id="content" name="content" rows="5" cols="33"></textarea>
+        <input type="submit" value="Publicar">
+    </form>
+</body>
+</html>

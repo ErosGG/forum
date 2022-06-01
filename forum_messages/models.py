@@ -1,11 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
-# Create your models here.
-class User(models.Model):
-    name = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
-    is_admin = models.BooleanField(default=False)
+# class User(models.Model):
+#     name = models.CharField(max_length=20)
+#     password = models.CharField(max_length=20)
+#     is_admin = models.BooleanField(default=False)
 
 
 class Publication(models.Model):

@@ -5,22 +5,33 @@
     <title>Fòrum</title>
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: #010409;
+            color: #f0f6fc;
             font-family: sans-serif;
         }
-       table {
+        table {
            border-collapse: collapse;
            border: white solid 1px;
-       }
-       th, td {
+        }
+        th, td {
            border: white solid 1px;
            padding: 10px;
-       }
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
     <h1>Fòrum</h1>
+    <p>Benvingut, {{ username }}</p>
+    {% if request.user.is_anonymous %}
+        <p><a href="{% url 'login' %}">Accedir</a></p>
+    {% else %}
+        <p><a href="{% url 'logout' %}">Desconnectar</a></p>
+        <p><a href="{% url 'message.create' %}">Missatge nou</a></p>
+    {% endif %}
     <table>
         <tr>
             <th>ID</th>
@@ -28,15 +39,16 @@
             <th>Autor</th>
             <th>Número de respostes</th>
             <th>Data de publicació</th>
+            {% if not request.user.is_anonymous and request.user.is_superuser %}<th>Opcions</th>{% endif %}
         </tr>
         {% for message in messages %}
             <tr>
                 <td>{{ message.id }}</td>
-<!--                <td><a href="http://localhost:8000/messages/{{ message.id }}/">{{ message.title }}</a></td>-->
                 <td><a href="{% url 'replies' message_id=message.id %}">{{ message.title }}</a></td>
-                <td>{{ message.user }}</td>
+                <td>{% if message.user %} {{ message.user }} {% else %} {{ 'Anonymous' }} {% endif %}</td>
                 <td>{{ message.replies_count }}</td>
                 <td>{{ message.published_at }}</td>
+                {% if not request.user.is_anonymous and request.user.is_superuser %}<td>Eliminar</td>{% endif %}
             </tr>
         {% endfor %}
     </table>
