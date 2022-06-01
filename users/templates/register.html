@@ -5,7 +5,7 @@
     <title>Fòrum</title>
 </head>
 <body>
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <label for="username">Usuari</label>
         <input type="text" id="username" name="username">
