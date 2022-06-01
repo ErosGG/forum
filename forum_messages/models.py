@@ -21,7 +21,13 @@ class Message(Publication):
     title = models.CharField(max_length=50)
     pass
 
+    def __str__(self):
+        return f'id: {self.id} >>> title: {self.title}'
+
 
 class Reply(Publication):
     message = models.ForeignKey(Message, on_delete=models.CASCADE)
     pass
+
+    def __str__(self):
+        return f'id: {self.id} >>> content: {self.content}'
