@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from forum_messages.views import MessageView, ReplyView, CreateMessageView, CreateReplyView, DeleteMessageView
+from forum_messages.views import MessageView, ReplyView, CreateMessageView, CreateReplyView, DeleteMessageView, \
+    DeleteReplyView
 from users.views import LoginView, LogoutView, RegisterView
 
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('messages/delete/<int:pk>', DeleteMessageView.as_view(), name='message.delete'),
     path('messages/<int:message_id>/replies/create/', CreateReplyView.as_view(), name='reply.create'),
     path('messages/<int:message_id>/replies/create/', CreateReplyView.as_view(), name='reply.store'),
+    path('messages/replies/delete/<int:pk>', DeleteReplyView.as_view(), name='reply.delete'),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

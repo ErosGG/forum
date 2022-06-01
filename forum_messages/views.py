@@ -73,3 +73,8 @@ class CreateReplyView(View):
             published_at=datetime.datetime.now()
         )
         return redirect(f'/messages/{message_id}', request)
+
+
+class DeleteReplyView(DeleteView):
+    model = Reply
+    success_url = f'/messages/{1}'

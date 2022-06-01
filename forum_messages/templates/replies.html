@@ -98,10 +98,10 @@
                 <div class="reply_content">
                     <p>{{ reply.content }}</p>
                 </div>
-                {% if request.user.id == message.user.id or request.user.is_superuser %}
+                {% if request.user.id == reply.user.id or request.user.is_superuser %}
                     <div class="reply_options">
 <!--                        <p>Editar</p>-->
-                    <form action="{% url 'message.delete' message.pk %}" method="post">
+                    <form action="{% url 'reply.delete' reply.pk %}" method="post">
                         {% csrf_token %}
                         <input type="submit" value="Eliminar">
                     </form>
