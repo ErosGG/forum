@@ -5,13 +5,13 @@
     <title>Fòrum</title>
 </head>
 <body>
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'user.store' %}" method="post">
         {% csrf_token %}
         <label for="username">Usuari</label>
         <input type="text" id="username" name="username">
         <label for="password">Contrasenya</label>
         <input type="password" id="password" name="password">
-        <input type="submit" value="Accedir">
+        <input type="submit" value="Registrar-se">
     </form>
 </body>
 </html>
