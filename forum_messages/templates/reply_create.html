@@ -8,17 +8,13 @@
             display: inline-flex;
             flex-direction: column;
         }
-        textarea {
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
-    <form action="{% url 'reply.store' message_id=message.id %}" method="post">
-        {% csrf_token %}
-        <label for="content">Contingut</label>
-        <textarea id="content" name="content" rows="5" cols="33"></textarea>
-        <input type="submit" value="Publicar">
-    </form>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
 </body>
 </html>

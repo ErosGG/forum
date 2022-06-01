@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import DeleteView
+
 from forum_messages.models import Message, Reply
 import datetime
 
@@ -34,6 +36,11 @@ class CreateMessageView(View):
             published_at=datetime.datetime.now()
         )
         return redirect('/messages/', request)
+
+
+class DeleteMessageView(DeleteView):
+    model = Message
+    success_url = '/messages/'
 
 
 class ReplyView(View):

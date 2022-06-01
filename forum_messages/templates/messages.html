@@ -48,7 +48,14 @@
                 <td>{% if message.user %} {{ message.user }} {% else %} {{ 'Anonymous' }} {% endif %}</td>
                 <td>{{ message.replies_count }}</td>
                 <td>{{ message.published_at }}</td>
-                {% if not request.user.is_anonymous and request.user.is_superuser %}<td>Eliminar</td>{% endif %}
+                {% if not request.user.is_anonymous and request.user.is_superuser %}
+                    <td>
+                        <form action="{% url 'message.delete' message.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>
