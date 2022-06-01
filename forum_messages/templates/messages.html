@@ -52,7 +52,7 @@
                     <td>
                         <form action="{% url 'message.delete' message.pk %}" method="post">
                             {% csrf_token %}
-                            <input type="submit" value="Delete">
+                            <input type="submit" value="Eliminar">
                         </form>
                     </td>
                 {% endif %}

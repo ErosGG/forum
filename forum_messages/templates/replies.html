@@ -50,7 +50,7 @@
         }
 
         div.message_options, div.reply_options {
-            padding-left: 20px;
+            padding: 20px 0 20px 20px;
         }
 
         a {
@@ -80,7 +80,11 @@
             </div>
             {% if request.user.id == message.user.id or request.user.is_superuser %}
                 <div class="message_options">
-                    <p>Editar</p><p>Eliminar</p>
+<!--                    <p>Editar</p>-->
+                    <form action="{% url 'message.delete' message.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Eliminar">
+                    </form>
                 </div>
             {% endif %}
     </div>
@@ -96,7 +100,11 @@
                 </div>
                 {% if request.user.id == message.user.id or request.user.is_superuser %}
                     <div class="reply_options">
-                        <p>Editar</p><p>Eliminar</p>
+<!--                        <p>Editar</p>-->
+                    <form action="{% url 'message.delete' message.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Eliminar">
+                    </form>
                     </div>
                 {% endif %}
             </div>
